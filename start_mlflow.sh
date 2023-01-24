@@ -4,8 +4,8 @@
 set -e
 
 
-if [ -z $DB_URL ]; then
-  echo >&2 "DB_URL must be set"
+if [ -z $MLFLOW_DB_URL ]; then
+  echo >&2 "MLFLOW_DB_URL must be set"
   exit 1
 fi
 
@@ -26,6 +26,6 @@ fi
 
 mlflow server \
     --host 0.0.0.0 \
-    --backend-store-uri $DB_URL \
+    --backend-store-uri $MLFLOW_DB_URL \
     --default-artifact-root s3://machine-learning-engineering \
     --gunicorn-opts "--log-level debug"
