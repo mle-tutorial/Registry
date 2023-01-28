@@ -1,5 +1,4 @@
 #!/bin/bash
-# export $(xargs <.env)
 
 set -e
 

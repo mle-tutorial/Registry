@@ -1,20 +1,21 @@
-from prefect import flow, task, get_run_logger
-from prefect.orion.schemas.states import Completed, Failed
-from datetime import datetime, timedelta
-from schema import StockData
-from config import Config
-from dataclasses import asdict
-from sqlalchemy import create_engine
-from pykrx import stock
-from sklearn.metrics import mean_squared_error
-from sklearn.ensemble import RandomForestRegressor
-from utils import make_dataset
-import matplotlib.pyplot as plt
-import pandas as pd
-from PIL import Image
 import io
-import mlflow
 import sys
+from dataclasses import asdict
+from datetime import datetime, timedelta
+
+import matplotlib.pyplot as plt
+import mlflow
+import pandas as pd
+from config import Config
+from PIL import Image
+from prefect import flow, get_run_logger, task
+from prefect.orion.schemas.states import Completed, Failed
+from pykrx import stock
+from schema import StockData
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_squared_error
+from sqlalchemy import create_engine
+from utils import make_dataset
 
 
 @task(name="stock data extract")
@@ -44,8 +45,8 @@ def transform(df):
         "Volume",
         "Value",
         "Change",
-        "Ticker"
-        ]
+        "Ticker",
+    ]
 
     df = df.reset_index()
     if len(cols) != len(df.columns):
@@ -105,14 +106,11 @@ def ml_pipeline():
 
     test_pred = model.predict(test_feature.reshape(-1, 20))
     test_label = test_label.flatten()
-    test_mse = mean_squared_error(
-        test_pred,
-        test_label
-        )
+    test_mse = mean_squared_error(test_pred, test_label)
     params = {
         "train_rsquare": train_rsquare,
         "test_rsquare": test_rsquare,
-        "test_mse": test_mse
+        "test_mse": test_mse,
     }
 
     expr_name = "project_buffett"
@@ -137,10 +135,8 @@ def ml_pipeline():
     mlflow.log_metrics(params)
     mlflow.log_image(im, "graph/prediction_graph.png")
     mlflow.sklearn.log_model(
-        model,
-        "stock_sklearn_rf",
-        registered_model_name="the_Hand_of_Buffett"
-        )
+        model, "stock_sklearn_rf", registered_model_name="the_Hand_of_Buffett"
+    )
     mlflow.end_run()
 
 
@@ -166,6 +162,6 @@ def stock_data_ml(ticker):
     ml_pipeline()
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     ticker = sys.argv[1]
     stock_data_ml()
