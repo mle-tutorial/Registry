@@ -14,14 +14,14 @@ MLFlow와 MinIO, Prefect를 사용하여 데이터 수집 및 학습 파이프�
 
 |환경변수|설명|
 |---|---|
-|AWS_ACCESS_KEY_ID|MinIO에서 설정했던 id|
-|AWS_SECRET_ACCESS_KEY|MinIO에서 설정했던 password|
+|AWS_ACCESS_KEY_ID|MinIO 혹은 S3의 Key ID|
+|AWS_SECRET_ACCESS_KEY|MinIO 혹은 S3의 Access Key|
 |DB_USER|PostgreSQL DB의 User 이름|
 |DB_PASSWD|PostgreSQL DB의 password|
 |DB_HOST|PostgreSQL DB의 HOST|
 |DB_PORT|PostgreSQL DB의 PORT|
 |DB_NAME|PostgreSQL DB의 이름|
-|MLFLOW_S3_ENDPOINT_URL|MinIO의 api url|
+|MLFLOW_S3_ENDPOINT_URL|MinIO의 API URL|
 |MLFLOW_DB_URL|MLFlow에서 사용할 데이터베이스의 URL|
 |MLFLOW_URI|MLFlow의 URL|
 |PREFECT_MINIO_ENDPOINT_URL|prefect의 flow를 저장할 MinIO의 URL|
