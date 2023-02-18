@@ -1,6 +1,7 @@
-from prefect.filesystems import RemoteFileSystem
-from dotenv import load_dotenv
 import os
+
+from dotenv import load_dotenv
+from prefect.filesystems import RemoteFileSystem
 
 load_dotenv()
 
@@ -10,7 +11,9 @@ minio_block = RemoteFileSystem(
     settings={
         "key": os.getenv("AWS_ACCESS_KEY_ID"),
         "secret": os.getenv("AWS_SECRET_ACCESS_KEY"),
-        "client_kwargs": {"endpoint_url": os.getenv("PREFECT_MINIO_ENDPOINT_URL")},
+        "client_kwargs": {
+            "endpoint_url": os.getenv("PREFECT_MINIO_ENDPOINT_URL")
+        },
     },
 )
 minio_block.save("prefect-sb")
