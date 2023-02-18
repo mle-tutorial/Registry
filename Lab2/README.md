@@ -26,7 +26,7 @@ MLFlow와 MinIO, Prefect를 사용하여 데이터 수집 및 학습 파이프�
 |MLFLOW_URI|MLFlow의 URL|
 |PREFECT_MINIO_ENDPOINT_URL|prefect의 flow를 저장할 MinIO의 URL|
 |PREFECT_API_URL|prefect cloud API URL|
-|PREFECT_API_KEY|prefect cloud API KEY|
+|PREFECT_API_KEY|prefect cloud API KEY(prefect cloud 사용자만 해당)|
 
 <br>
 

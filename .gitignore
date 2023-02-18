@@ -29,6 +29,7 @@ MANIFEST
 
 # prefect
 .prefectignore
+.orion_env
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
