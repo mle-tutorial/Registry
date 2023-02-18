@@ -15,6 +15,7 @@ today = datetime.utcnow() + timedelta(hours=9)
 t1 = (today - timedelta(days=365)).strftime("%Y%m%d")
 t2 = (today - timedelta(days=2)).strftime("%Y%m%d")
 
+print("Downloading data")
 df = stock.get_market_ohlcv_by_date(t1, t2, "005930")
 df = df.reset_index()
 df.columns = cols
@@ -34,4 +35,7 @@ types = {
 df = df.astype(types)
 
 df["Date"] = pd.to_datetime(df["Date"])
+
+print("Inserting data into DB")
 df.to_sql("stock", engine, if_exists="append", index=False)
+print("Done")
