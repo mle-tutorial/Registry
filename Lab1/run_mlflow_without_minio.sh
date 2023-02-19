@@ -2,6 +2,11 @@
 
 set -e
 
+ENV_FILE=.env
+if test -f "$ENV_FILE"; then
+    echo "$ENV_FILE exists."
+    export $(xargs <.env)
+fi
 
 if [ -z $MLFLOW_DB_URL ]; then
   echo >&2 "MLFLOW_DB_URL must be set"
