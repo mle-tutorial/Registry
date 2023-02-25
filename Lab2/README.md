@@ -31,23 +31,28 @@ MLFlow와 MinIO, Prefect를 사용하여 데이터 수집 및 학습 파이프�
 <br>
 
 ### 설정예시
+
+아래와 같이 print_ip.py를 실행하여 현재 환경의 사설 IP를 확인합니다.
+
+![image](get_ip_bash.png)
+
+.env 파일에 아래와 같은 형태로 작성 후 실습 폴더(Registry/Lab2/)에 위치시킵니다.(아래의 설정값들은 단순한 예시이므로 실제 실습 시에는 반드시 사전에 설정했던 값들로 내용을 수정해야 합니다.)
+
 ```
 AWS_ACCESS_KEY_ID=user_id
 AWS_SECRET_ACCESS_KEY=user_password
 DB_USER=postgres
 DB_PASSWD=password
-DB_HOST=localhost
+DB_HOST=192.168.0.2
 DB_PORT=5432
 DB_NAME=stock
-MLFLOW_S3_ENDPOINT_URL=http://localhost:9000
-MLFLOW_DB_URL=postgresql://postgres:password@localhost:5432/mlflow
-MLFLOW_URI=http://localhost:5000
+MLFLOW_S3_ENDPOINT_URL=http://192.168.0.2:9000
+MLFLOW_DB_URL=postgresql://postgres:password@192.168.0.2:5432/mlflow
+MLFLOW_URI=http://192.168.0.2:5000
 PREFECT_MINIO_ENDPOINT_URL=http://minio:9000
 PREFECT_API_URL=https://api.prefect.cloud/api/accounts/[ACCOUNT-ID]/workspaces/[WORKSPACE-ID]
 PREFECT_API_KEY=[API-KEY]
 ```
-
-.env 파일에 위와 같은 형태로 작성 후 실습 폴더(Registry/Lab2/)에 위치시킵니다.(위의 설정값들은 단순한 예시이므로 실제 실습시에는 반드시 사전에 설정했던 값들로 내용을 수정해야 합니다.)
 
 <br>
 
