@@ -20,12 +20,12 @@ MLFlow를 이용하여 실험과정에서 생기는 성능지표, 모델파일 �
 
 ### 설정예시
 
-#### Lab1
+#### Lab1-1
 ```
 MLFLOW_DB_URL=postgresql://postgres:password@localhost:5432/mlflow
 ```
 
-#### Lab2
+#### Lab1-2
 ```
 MLFLOW_DB_URL=postgresql://postgres:password@host.docker.internal:5432/mlflow
 ```
