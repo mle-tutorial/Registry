@@ -19,8 +19,15 @@ MLFlow를 이용하여 실험과정에서 생기는 성능지표, 모델파일 �
 <br>
 
 ### 설정예시
+
+#### Lab1
 ```
 MLFLOW_DB_URL=postgresql://postgres:password@localhost:5432/mlflow
+```
+
+#### Lab2
+```
+MLFLOW_DB_URL=postgresql://postgres:password@host.docker.internal:5432/mlflow
 ```
 
 .env 파일에 위와 같은 형태로 작성 후 실습 폴더(Registry/Lab1/)에 위치시킵니다.(위의 설정값들은 단순한 예시이므로 실제 실습시에는 반드시 사전에 설정했던 값들로 내용을 수정해야 합니다.)
